@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions 
+    name="ngw_terminal_status_interface" 
+    targetNamespace="http://www.aepona.com/wsdl/ngw/terminal_status/v1_0/interface"
+    xmlns="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ngw_terminal_status="http://www.aepona.com/wsdl/ngw/terminal_status/v1_0/interface"
+    xmlns:ngw_common_faults="http://www.aepona.com/wsdl/ngw/common/v1_0/faults" 
+    xmlns:ngw_terminal_status_xsd="http://www.aepona.com/schema/ngw/terminal_status/v1_0"
+    xmlns:ngw_common_xsd="http://www.aepona.com/schema/ngw/common/v1_0"
+    xmlns:ngw_terminal_status_faults="http://www.aepona.com/wsdl/ngw/terminal_status/v1_0/faults"
+    xmlns:terminal_status_local_xsd="http://www.aepona.com/schema/ngw/terminal_status/v1_0/local">
+
+  <wsdl:import namespace="http://www.aepona.com/wsdl/ngw/common/v1_0/faults"
+	       location="ngw_common_faults_1_0.wsdl" />
+  <wsdl:import namespace="http://www.aepona.com/wsdl/ngw/terminal_status/v1_0/faults"
+	       location="ngw_terminal_status_faults_1_0.wsdl" />
+
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://www.aepona.com/schema/ngw/terminal_status/v1_0/local">
+      <xsd:import namespace="http://www.aepona.com/schema/ngw/terminal_status/v1_0"
+		  schemaLocation="ngw_terminal_status_types_1_0.xsd" />
+      <xsd:import namespace="http://www.aepona.com/schema/ngw/common/v1_0"
+		  schemaLocation="ngw_common_types_1_0.xsd" />
+
+      <!-- getTerminalStatus -->
+      <xsd:element name="getTerminalStatus" type="terminal_status_local_xsd:getTerminalStatus"/>
+      <xsd:complexType name="getTerminalStatus">
+        <xsd:sequence>
+          <xsd:element name="addresses"
+		       type="ngw_terminal_status_xsd:Address"
+		       minOccurs="1"
+		       maxOccurs="unbounded"/>
+          <xsd:element name="attributes"
+		       type="ngw_common_xsd:Attribute"
+		       minOccurs="0"
+		       maxOccurs="unbounded" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="getTerminalStatusResponse"
+		   type="terminal_status_local_xsd:getTerminalStatusResponse"/>
+      <xsd:complexType name="getTerminalStatusResponse">
+        <xsd:sequence>
+          <xsd:element name="result"
+		       type="ngw_terminal_status_xsd:TerminalStatusResponseInfo"
+		       minOccurs="1"
+		       maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- startTerminalStatusNotification -->
+      <xsd:element name="startTerminalStatusNotification"
+		   type="terminal_status_local_xsd:startTerminalStatusNotification"/>
+      <xsd:complexType name="startTerminalStatusNotification">
+        <xsd:sequence>
+          <xsd:element name="addresses" type="ngw_terminal_status_xsd:Address" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element name="attributes" type="ngw_common_xsd:Attribute" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="startTerminalStatusNotificationResponse"
+		   type="terminal_status_local_xsd:startTerminalStatusNotificationResponse"/>
+      <xsd:complexType name="startTerminalStatusNotificationResponse">
+        <xsd:sequence>
+          <xsd:element name="sessionId" type="xsd:int"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- stopTerminalStatusNotication -->
+      <xsd:element name="stopTerminalStatusNotification"
+		   type="terminal_status_local_xsd:stopTerminalStatusNotification"/>
+      <xsd:complexType name="stopTerminalStatusNotification">
+        <xsd:sequence>
+          <xsd:element name="sessionId" type="xsd:int"/>
+          <xsd:element name="addresses" type="ngw_terminal_status_xsd:Address" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="attributes" type="ngw_common_xsd:Attribute" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="stopTerminalStatusNotificationResponse"
+		   type="terminal_status_local_xsd:stopTerminalStatusNotificationResponse"/>
+      <xsd:complexType name="stopTerminalStatusNotificationResponse">
+        <xsd:sequence>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <!-- terminalStatusNotification -->
+      <xsd:element name="terminalStatusNotification" type="terminal_status_local_xsd:terminalStatusNotification"/>
+      <xsd:complexType name="terminalStatusNotification">
+        <xsd:sequence>
+          <xsd:element name="sessionId"  type="xsd:int"/>
+          <xsd:element name="result"     type="ngw_terminal_status_xsd:TerminalStatusResponseInfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:element name="terminalStatusNotificationResponse"
+		   type="terminal_status_local_xsd:terminalStatusNotificationResponse"/>
+      <xsd:complexType name="terminalStatusNotificationResponse">
+        <xsd:sequence>
+        </xsd:sequence>
+      </xsd:complexType>
+      
+    </xsd:schema>
+  </wsdl:types>
+
+  <!-- getTerminalStatus request and response messages -->
+  <wsdl:message name="TerminalStatus_getTerminalStatus">
+    <wsdl:part name="parameters" element="terminal_status_local_xsd:getTerminalStatus"/>
+  </wsdl:message>
+
+  <wsdl:message name="TerminalStatus_getTerminalStatusResponse">
+    <wsdl:part name="result" element="terminal_status_local_xsd:getTerminalStatusResponse"/>
+  </wsdl:message>
+
+
+  <!-- startTerminalStatusNotification request and response messages -->
+  <wsdl:message name="TerminalStatus_startTerminalStatusNotification">
+    <wsdl:part name="parameters" element="terminal_status_local_xsd:startTerminalStatusNotification"/>
+  </wsdl:message>
+
+  <wsdl:message name="TerminalStatus_startTerminalStatusNotificationResponse">
+    <wsdl:part name="result" element="terminal_status_local_xsd:startTerminalStatusNotificationResponse"/>
+  </wsdl:message>
+ 
+  <!-- stopTerminalStatusNotification request and response messages -->
+  <wsdl:message name="TerminalStatus_stopTerminalStatusNotification">
+    <wsdl:part name="parameters" element="terminal_status_local_xsd:stopTerminalStatusNotification"/>
+  </wsdl:message>
+
+  <wsdl:message name="TerminalStatus_stopTerminalStatusNotificationResponse">
+    <wsdl:part name="result" element="terminal_status_local_xsd:stopTerminalStatusNotificationResponse"/>
+  </wsdl:message>
+
+  <!-- terminalStatusNotification request and response messages -->
+  <wsdl:message name="TerminalStatus_terminalStatusNotification">
+    <wsdl:part name="parameters" element="terminal_status_local_xsd:terminalStatusNotification"/>
+  </wsdl:message>
+
+  <wsdl:message name="TerminalStatus_terminalStatusNotificationResponse">
+    <wsdl:part name="result" element="terminal_status_local_xsd:terminalStatusNotificationResponse"/>
+  </wsdl:message>
+
+  
+  <wsdl:portType name="TerminalStatus">
+    
+    <!-- getTerminalStatus operation -->
+    <wsdl:operation name="getTerminalStatus">
+      <wsdl:input message="ngw_terminal_status:TerminalStatus_getTerminalStatus"/>
+      <wsdl:output message="ngw_terminal_status:TerminalStatus_getTerminalStatusResponse"/>
+      <wsdl:fault name="ServiceException" message="ngw_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="ngw_common_faults:PolicyException"/>
+      <wsdl:fault name="TerminalStatusException" message="ngw_terminal_status_faults:TerminalStatusException"/>
+    </wsdl:operation>
+
+    <!-- startTerminalStatusNotification operation -->
+    <wsdl:operation name="startTerminalStatusNotification">
+      <wsdl:input message="ngw_terminal_status:TerminalStatus_startTerminalStatusNotification"/>
+      <wsdl:output message="ngw_terminal_status:TerminalStatus_startTerminalStatusNotificationResponse"/>
+      <wsdl:fault name="ServiceException" message="ngw_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="ngw_common_faults:PolicyException"/>
+      <wsdl:fault name="TerminalStatusException" message="ngw_terminal_status_faults:TerminalStatusException"/>
+    </wsdl:operation>
+
+    <!-- stopTerminalStatusNotification operation -->
+    <wsdl:operation name="stopTerminalStatusNotification">
+      <wsdl:input message="ngw_terminal_status:TerminalStatus_stopTerminalStatusNotification"/>
+      <wsdl:output message="ngw_terminal_status:TerminalStatus_stopTerminalStatusNotificationResponse"/>
+      <wsdl:fault name="ServiceException" message="ngw_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="ngw_common_faults:PolicyException"/>
+      <wsdl:fault name="TerminalStatusException" message="ngw_terminal_status_faults:TerminalStatusException"/>
+    </wsdl:operation>
+
+    <!-- terminalStatusNotification operation -->
+    <wsdl:operation name="terminalStatusNotification">
+      <wsdl:input message="ngw_terminal_status:TerminalStatus_terminalStatusNotification"/>
+      <wsdl:output message="ngw_terminal_status:TerminalStatus_terminalStatusNotificationResponse"/>
+      <wsdl:fault name="ServiceException" message="ngw_common_faults:ServiceException"/>
+      <wsdl:fault name="PolicyException" message="ngw_common_faults:PolicyException"/>
+    </wsdl:operation>
+    
+   </wsdl:portType>
+</wsdl:definitions>

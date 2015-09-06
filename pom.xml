@@ -15,6 +15,37 @@
         <version>2.10.0.redhat-60065</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-quartz</artifactId>
+            <version>2.10.0.redhat-60065</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.camel</groupId>-->
+            <!--<artifactId>camel-test</artifactId>-->
+            <!--<version>2.10.0.redhat-60065</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jetty</artifactId>
+            <version>2.10.0.redhat-60065</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>2.6.0.redhat-60065</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <version>2.10.0.redhat-60065</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-stream</artifactId>
+            <version>2.10.0.redhat-60065</version>
+        </dependency>
+        <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-spring</artifactId>
         <version>2.10.0.redhat-60065</version>
@@ -30,10 +61,77 @@
             <version>2.10.0.redhat-60065</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jpa</artifactId>
+            <version>2.10.0.redhat-60065</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-cxf</artifactId>
+            <version>2.10.0.redhat-60065</version>
+
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>slf4j-api</artifactId>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>11.2.0.4</version>
+        </dependency>
     </dependencies>
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.felix</groupId>-->
+                <!--<artifactId>maven-bundle-plugin</artifactId>-->
+                <!--<version>2.3.6</version>-->
+                <!--<extensions>true</extensions>-->
+                <!--<configuration>-->
+                    <!--<instructions>-->
+                        <!--<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>-->
+                        <!--<Import-Package>-->
+                            <!--*-->
+                        <!--</Import-Package>-->
+                        <!--<Export-Package>!*</Export-Package>-->
+                        <!--<excludeDependencies>*;scope=provided|runtime</excludeDependencies>-->
+                        <!--&lt;!&ndash; Dynamic import needed for CXF-RS as described in https://access.redhat.com/site/documentation/en-US/Fuse_ESB_Enterprise/7.1/html/Web_Services_and_Routing_with_Camel_CXF/files/Provider-DeployOsgi.html &ndash;&gt;-->
+                        <!--<DynamicImport-Package>-->
+                            <!--org.apache.cxf.*,-->
+                            <!--org.springframework.beans.*-->
+                        <!--</DynamicImport-Package>-->
+                        <!--<AseService>true</AseService>-->
+                    <!--</instructions>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+        <!--&lt;!&ndash; Attach the generated features file as an artifact, and publish to the maven repository &ndash;&gt;-->
+
+
+
+    <!--</build>-->
 
 </project>

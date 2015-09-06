@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema
+    targetNamespace="http://www.aepona.com/schema/ngw/terminal_status/v1_0"
+    xmlns:ngw_terminal_status_xsd="http://www.aepona.com/schema/ngw/terminal_status/v1_0"
+    xmlns:ngw_common_xsd="http://www.aepona.com/schema/ngw/common/v1_0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:import namespace="http://www.aepona.com/schema/ngw/common/v1_0" schemaLocation="ngw_common_types_1_0.xsd"/>
+
+  <xsd:simpleType name="AddressType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="UNDEFINED"/>  <!-- for when we don't know -->
+      <xsd:enumeration value="E164"/>       <!-- for E164 numbers -->
+    </xsd:restriction>                      <!-- add as required -->
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TerminalStatusCode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="OK"/>
+      <xsd:enumeration value="SYSTEM_FAILURE"/>
+      <xsd:enumeration value="UNAUTHORIZED_NETWORK"/>
+      <xsd:enumeration value="UNKNOWN_SUBSCRIBER"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TerminalStateIndication">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NOT_REACHABLE"/>
+      <xsd:enumeration value="REACHABLE"/>
+      <xsd:enumeration value="BUSY"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TerminalType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FIXED"/>
+      <xsd:enumeration value="MOBILE"/>
+      <xsd:enumeration value="IP"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="Diagnostic">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NO_INFORMATION"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Address -->
+  <xsd:complexType name="Address">
+    <xsd:sequence>
+      <xsd:element name="addressString" type="xsd:string"/>
+      <xsd:element name="addressType" type="ngw_terminal_status_xsd:AddressType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- TerminalStatusResponseData -->
+  <xsd:complexType name="TerminalStatusResponseData">
+    <xsd:sequence>
+      <xsd:element name="state"  type="ngw_terminal_status_xsd:TerminalStateIndication"/>
+      <xsd:element name="terminalType" type="ngw_terminal_status_xsd:TerminalType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- TerminalStatusResponseInfo -->
+  <xsd:complexType name="TerminalStatusResponseInfo">
+    <xsd:sequence>
+      <xsd:element name="address"    type="ngw_terminal_status_xsd:Address"/>
+      <xsd:element name="statusCode" type="ngw_terminal_status_xsd:TerminalStatusCode"/>
+      <xsd:element name="data"       type="ngw_terminal_status_xsd:TerminalStatusResponseData"
+           minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="attributes" type="ngw_common_xsd:Attribute" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- TerminalStatusException -->
+  <xsd:element name="TerminalStatusException" type="ngw_terminal_status_xsd:TerminalStatusException"/>
+  <xsd:complexType name="TerminalStatusException">
+    <xsd:sequence>
+      <xsd:element name="status" type="ngw_terminal_status_xsd:TerminalStatusCode"/>
+      <xsd:element name="diagnostic" type="ngw_terminal_status_xsd:Diagnostic"/>
+      <xsd:element name="text" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

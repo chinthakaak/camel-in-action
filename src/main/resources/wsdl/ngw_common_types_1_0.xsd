@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.aepona.com/schema/ngw/common/v1_0"
+    xmlns:ngw_common_xsd="http://www.aepona.com/schema/ngw/common/v1_0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+   <xsd:complexType name="ServiceError">
+      <xsd:sequence>
+         <xsd:element name="messageId" type="xsd:string"/>
+         <xsd:element name="text" type="xsd:string"/>
+         <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:element name="ServiceException" type="ngw_common_xsd:ServiceException"/>
+   <xsd:complexType name="ServiceException">
+      <xsd:sequence>
+         <xsd:element name="messageId" type="xsd:string"/>
+         <xsd:element name="text" type="xsd:string"/>
+         <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+
+   <xsd:element name="PolicyException" type="ngw_common_xsd:PolicyException"/>
+   <xsd:complexType name="PolicyException">
+      <xsd:sequence>
+         <xsd:element name="messageId" type="xsd:string"/>
+         <xsd:element name="text" type="xsd:string"/>
+         <xsd:element name="variables" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+    <xsd:complexType name="Attribute">
+        <xsd:sequence>
+            <xsd:element name="key" type="xsd:string" />
+            <xsd:element name="value" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
