@@ -4,8 +4,10 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 
-/**
- * Created by ka40215 on 9/17/15.
+/** yhjkol;'
+ *
+ * Created by ka40215 on 9/17/15. yhjkol;'
+ *
  */
 public class AddRemoveRoutes {
     public static void main(String[] args) throws Exception {
@@ -44,3 +46,14 @@ public class AddRemoveRoutes {
         camelContext.stop();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
